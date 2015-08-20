@@ -2,4 +2,5 @@ __author__ = 'SekthDroid'
 
 
 class Bingo(object):
-    pass
+    def call_number(self):
+        return 1
