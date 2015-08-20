@@ -19,8 +19,16 @@ class Bingo(object):
         return random
 
     def generate_card(self, lower_bound, upper_bound):
-        card = [lower_bound] * 5
+        numbers = list()
+        for i in range(0, 25):
+            random = randrange(lower_bound, upper_bound)
+            while random in numbers:
+                random = randrange(lower_bound, upper_bound)
+
+            numbers.append(random)
+
+        card = [0] * 5
         for i in range(0, len(card)):
-            card[i] = [lower_bound] * 5
+            card[i] = [numbers.pop(), numbers.pop(), numbers.pop(), numbers.pop(), numbers.pop()]
 
         return card

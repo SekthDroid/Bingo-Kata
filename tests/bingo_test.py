@@ -34,3 +34,13 @@ class BingoTest(TestCase):
             for cell in row:
                 self.assertGreaterEqual(cell, 1)
                 self.assertLessEqual(cell, 75)
+
+    def test_bingo_generate_bingo_cards_with_25_unique_numbers(self):
+        numbers = set()
+
+        card = self.bingo.generate_card(1, 75)
+        for row in card:
+            for cell in row:
+                numbers.add(cell)
+
+        self.assertEqual(25, len(numbers))
