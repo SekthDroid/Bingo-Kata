@@ -14,21 +14,28 @@ class Bingo(object):
         if len(self.available_numbers) is 0:
             return
 
-        random = self.available_numbers[randrange(0, len(self.available_numbers))]
+        random = self.available_numbers[self.__generate_random_number(0, len(self.available_numbers))]
         self.available_numbers.remove(random)
         return random
 
-    def generate_card(self, lower_bound, upper_bound):
-        numbers = list()
-        for i in range(0, 25):
-            random = randrange(lower_bound, upper_bound)
-            while random in numbers:
-                random = randrange(lower_bound, upper_bound)
+    def generate_random_numbers_with_bounds(self, lower_bound, upper_bound):
+        numbers = set()
+        while len(numbers) != 25:
+            numbers.add(self.__generate_random_number(lower_bound, upper_bound))
+        return numbers
 
-            numbers.append(random)
-
+    @staticmethod
+    def fill_card_with(numbers):
         card = [0] * 5
         for i in range(0, len(card)):
             card[i] = [numbers.pop(), numbers.pop(), numbers.pop(), numbers.pop(), numbers.pop()]
-
         return card
+
+    def generate_card(self, lower_bound, upper_bound):
+        numbers = self.generate_random_numbers_with_bounds(lower_bound, upper_bound)
+
+        return self.fill_card_with(numbers)
+
+    @staticmethod
+    def __generate_random_number(lower_bound, upper_bound):
+        return randrange(lower_bound, upper_bound)
