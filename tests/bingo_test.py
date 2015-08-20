@@ -21,3 +21,16 @@ class BingoTest(TestCase):
             numbers.add(self.bingo.call_number())
 
         self.assertEqual(75, len(numbers))
+
+    def test_bingo_can_generate_bingo_cards_with_25_numbers_between_the_bingo_bounds(self):
+        card = self.bingo.generate_card(1, 75)
+        items = 0
+        for row in card:
+            items += len(row)
+
+        self.assertEqual(25, items)
+
+        for row in card:
+            for cell in row:
+                self.assertGreaterEqual(cell, 1)
+                self.assertLessEqual(cell, 75)
