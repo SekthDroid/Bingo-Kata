@@ -20,6 +20,17 @@ class BingoCardTest(TestCase):
         card = BingoCard(numbers)
         self.assertEqual(25, len(card.get_card_numbers()))
 
+    def test_bingo_card_return_column_that_exists(self):
+        columns = list()
+        for i in range(5):
+            row = list()
+            for x in range(5):
+                row.append(x)
+            columns.append(row)
+
+        card = BingoCard(columns)
+        self.assertEqual(columns[0], card.get_column(0))
+
 
 class BingoCardGeneratorTest(TestCase):
     def test_bingo_can_generate_columns_with_25_spaces(self):

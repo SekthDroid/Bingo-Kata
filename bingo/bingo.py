@@ -25,7 +25,7 @@ class BingoCard(object):
         self.columns = columns
 
     def get_column(self, column):
-        pass
+        return self.columns[0]
 
     def check_number(self, number):
         pass
