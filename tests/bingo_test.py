@@ -1,5 +1,5 @@
 from unittest import TestCase, skip
-from bingo.bingo import Bingo, BingoCard
+from bingo.bingo import Bingo, BingoCard, bingo_card_generator
 
 __author__ = 'SekthDroid'
 
@@ -20,7 +20,20 @@ class BingoCardTest(TestCase):
         card = BingoCard(numbers)
         self.assertEqual(25, len(card.get_card_numbers()))
 
-@skip("Not testing it right now")
+
+class BingoCardGeneratorTest(TestCase):
+    def test_bingo_can_generate_columns_with_25_spaces(self):
+        columns = bingo_card_generator(5, 5, 1, 75)
+
+        total_items = 5 * 5
+
+        items = 0
+        for column in columns:
+            items += len(column)
+
+        self.assertEqual(total_items, items)
+
+
 class BingoTest(TestCase):
     def setUp(self):
         super().setUp()

@@ -2,6 +2,21 @@ from random import randrange
 
 __author__ = 'SekthDroid'
 
+
+def bingo_card_generator(rows, columns, lower_bound, upper_bound):
+    card_columns = list()
+    increment = upper_bound = int(upper_bound / 5)
+    for i in range(columns):
+        current_column = set()
+        while len(current_column) < rows:
+            current_column.add(generate_random_number(lower_bound, upper_bound))
+        lower_bound += increment
+        upper_bound += increment
+        card_columns.append(current_column)
+
+    return card_columns
+
+
 class BingoCard(object):
     def __init__(self, columns):
         super().__init__()
