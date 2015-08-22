@@ -133,15 +133,19 @@ class BingoTest(TestCase):
     def test_bingo_check_bingo_card_that_has_checked_all_his_numbers(self):
         # We are going to allow the player to join after the start (I think this is not allowed in the real life)
         numbers = self.call_twenty_five_numbers()
-
         columns = self.create_column_with(numbers)
-
         card = BingoCard(columns)
 
         self.assertTrue(self.bingo.check_card(card))
 
+    def test_bingo_check_bingo_card_that_has_not_checked_all_his_numbers(self):
+        numbers = [i for i in range(1, 76)]
+        card = BingoCard(self.create_column_with(numbers[1:25]))
+
+        self.assertFalse(self.bingo.check_card(card))
+
     def call_twenty_five_numbers(self):
-        return [self.bingo.call_number() for i in range(25)]
+        return [self.bingo.call_number() for _ in range(25)]
 
     def create_column_with(self, numbers):
         return [numbers[x:x + 5] for x in range(5)]

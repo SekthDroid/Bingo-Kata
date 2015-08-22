@@ -54,6 +54,10 @@ class Bingo(object):
         return random
 
     def check_card(self, card):
+        for number in card.get_card_numbers():
+            if number in self.available_numbers:
+                return False
+
         return True
 
 
