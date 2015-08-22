@@ -56,4 +56,9 @@ class BingoTest(TestCase):
             self.assertGreaterEqual(card[i][0], 1)
             self.assertLessEqual(card[i][0], 15)
 
+    def test_second_bingo_card_column_should_have_numbers_between_sixteen_and_thirty_inclusive(self):
+        card = self.bingo.generate_card(self.LOWER_BOUND, self.UPPER_BOUND)
 
+        for i in range(0, 5):
+            self.assertGreaterEqual(card[i][1], 16)
+            self.assertLessEqual(card[i][1], 30)
