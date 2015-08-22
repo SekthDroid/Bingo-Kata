@@ -59,6 +59,13 @@ class BingoCardGeneratorTest(TestCase):
                 self.assertGreaterEqual(number, 31)
                 self.assertLessEqual(number, 45)
 
+    def test_fourth_bingo_card_column_should_have_numbers_between_46_and_60_inclusive(self):
+        columns = bingo_card_generator(5, 5, 1, 75)
+
+        for number in columns[3]:
+            self.assertGreaterEqual(number, 46)
+            self.assertLessEqual(number, 60)
+
 
 class BingoTest(TestCase):
     def setUp(self):
@@ -89,13 +96,6 @@ class BingoTest(TestCase):
 
         self.assertEqual(US_BINGO_CELLS, len(numbers))
 
-
-    def test_fourth_bingo_card_column_should_have_numbers_between_46_and_60_inclusive(self):
-        card = self.bingo.generate_card(LOWER_BOUND, UPPER_BOUND)
-
-        for i in range(0, 5):
-            self.assertGreaterEqual(card[i][3], 46)
-            self.assertLessEqual(card[i][3], 60)
 
     def test_fifth_bingo_card_column_should_have_numbers_between_61_and_75_inclusive(self):
         card = self.bingo.generate_card(LOWER_BOUND, UPPER_BOUND)
