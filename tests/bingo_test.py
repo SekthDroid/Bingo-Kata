@@ -41,6 +41,13 @@ class BingoCardTest(TestCase):
         card.check_number(1)
         self.assertTrue(1 in card.checked)
 
+    def test_bingo_card_should_not_check_a_non_existing_number(self):
+        columns = self.generate_columns()
+        card = BingoCard(columns)
+
+        card.check_number(120)
+        self.assertTrue(120 not in card.checked)
+
 
 class BingoCardGeneratorTest(TestCase):
     def test_bingo_can_generate_columns_with_25_spaces(self):

@@ -29,7 +29,7 @@ class BingoCard(object):
         return None if column > len(self.columns) else self.columns[column]
 
     def check_number(self, number):
-        self.checked.append(number)
+        if number in self.get_card_numbers(): self.checked.append(number)
 
     def get_card_numbers(self):
         numbers = list()
