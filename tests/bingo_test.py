@@ -47,6 +47,19 @@ class BingoCardGeneratorTest(TestCase):
             self.assertGreaterEqual(number, 16)
             self.assertLessEqual(number, 30)
 
+    def test_third_bingo_card_column_should_have_numbers_between_31_and_45_inclusive_with_one_free_space(self):
+        columns = bingo_card_generator(5, 5, 1, 75)
+
+        column_to_test = columns[2]
+        for i in range(0, len(column_to_test)):
+            number = column_to_test[i]
+            if i is 2:
+                self.assertEqual("", number)
+            else:
+                self.assertGreaterEqual(number, 31)
+                self.assertLessEqual(number, 45)
+
+
 class BingoTest(TestCase):
     def setUp(self):
         super().setUp()
@@ -76,17 +89,6 @@ class BingoTest(TestCase):
 
         self.assertEqual(US_BINGO_CELLS, len(numbers))
 
-
-
-
-    def test_third_bingo_card_column_should_have_numbers_between_31_and_45_inclusive(self):
-        card = self.bingo.generate_card(LOWER_BOUND, UPPER_BOUND)
-
-        for i in range(0, 5):
-            if i is 2:  # We avoid the free space in this test
-                continue
-            self.assertGreaterEqual(card[i][2], 31)
-            self.assertLessEqual(card[i][2], 45)
 
     def test_fourth_bingo_card_column_should_have_numbers_between_46_and_60_inclusive(self):
         card = self.bingo.generate_card(LOWER_BOUND, UPPER_BOUND)

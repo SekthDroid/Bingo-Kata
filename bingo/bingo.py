@@ -7,13 +7,15 @@ def bingo_card_generator(rows, columns, lower_bound, upper_bound):
     card_columns = list()
     increment = upper_bound = int(upper_bound / 5)
     for i in range(columns):
-        current_column = set()
+        current_column = list()
         while len(current_column) < rows:
-            current_column.add(generate_random_number(lower_bound, upper_bound))
+            candidate = generate_random_number(lower_bound, upper_bound)
+            if candidate not in current_column:
+                current_column.append(candidate)
         lower_bound += increment
         upper_bound += increment
         card_columns.append(current_column)
-
+    card_columns[2][2] = ""
     return card_columns
 
 
