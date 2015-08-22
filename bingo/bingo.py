@@ -2,11 +2,10 @@ from random import randrange
 
 __author__ = 'SekthDroid'
 
-
 class BingoCard(object):
-    def __init__(self):
+    def __init__(self, columns):
         super().__init__()
-        self.generate_card()
+        self.columns = columns
 
     def get_column(self, column):
         pass
@@ -14,8 +13,11 @@ class BingoCard(object):
     def check_number(self, number):
         pass
 
-    def generate_card(self):
-        pass
+    def get_card_numbers(self):
+        numbers = list()
+        for column in self.columns:
+            numbers += column
+        return numbers
 
 
 class Bingo(object):
