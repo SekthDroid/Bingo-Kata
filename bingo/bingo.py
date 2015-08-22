@@ -25,6 +25,8 @@ class BingoCard(object):
         self.columns = columns
 
     def get_column(self, column):
+        if column > len(self.columns):
+            return None
         return self.columns[column]
 
     def check_number(self, number):
