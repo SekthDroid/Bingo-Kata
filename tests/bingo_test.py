@@ -10,23 +10,22 @@ US_BINGO_CELLS = 25
 
 class BingoCardTest(TestCase):
     def test_bingo_card_return_all_his_numbers(self):
-        numbers = list()
-        for i in range(5):
-            column = list()
-            for x in range(5):
-                column.append(x)
-            numbers.append(column)
+        columns = self.generate_columns()
 
-        card = BingoCard(numbers)
+        card = BingoCard(columns)
         self.assertEqual(25, len(card.get_card_numbers()))
 
-    def test_bingo_card_return_column_that_exists(self):
+    def generate_columns(self):
         columns = list()
         for i in range(5):
             row = list()
             for x in range(5):
                 row.append(x)
             columns.append(row)
+        return columns
+
+    def test_bingo_card_return_column_that_exists(self):
+        columns = self.generate_columns()
 
         card = BingoCard(columns)
         self.assertEqual(columns[0], card.get_column(0))
