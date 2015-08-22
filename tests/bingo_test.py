@@ -1,4 +1,4 @@
-from unittest import TestCase, skip
+from unittest import TestCase
 from bingo.bingo import Bingo, BingoCard, bingo_card_generator
 
 __author__ = 'SekthDroid'
@@ -16,7 +16,8 @@ class BingoCardTest(TestCase):
         self.assertEqual(25, len(card.get_card_numbers()))
 
     def generate_columns(self):
-        columns = list([[1, 2, 3, 4, 5], [11, 22, 33, 44, 55], [21, 12, 23, 34, 45], [9, 8, 7, 6, 1], [1, 2, 32, 45, 51]])
+        columns = list(
+            [[1, 2, 3, 4, 5], [11, 22, 33, 44, 55], [21, 12, 23, 34, 45], [9, 8, 7, 6, 1], [1, 2, 32, 45, 51]])
 
         return columns
 
@@ -32,6 +33,13 @@ class BingoCardTest(TestCase):
         card = BingoCard(columns)
 
         self.assertEqual(None, card.get_column(10))
+
+    def test_bingo_card_check_an_existing_number(self):
+        columns = self.generate_columns()
+        card = BingoCard(columns)
+
+        card.check_number(1)
+        self.assertTrue(1 in card.checked)
 
 
 class BingoCardGeneratorTest(TestCase):

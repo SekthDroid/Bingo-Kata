@@ -22,13 +22,14 @@ def bingo_card_generator(rows, columns, lower_bound, upper_bound):
 class BingoCard(object):
     def __init__(self, columns):
         super().__init__()
+        self.checked = list()
         self.columns = columns
 
     def get_column(self, column):
         return None if column > len(self.columns) else self.columns[column]
 
     def check_number(self, number):
-        pass
+        self.checked.append(number)
 
     def get_card_numbers(self):
         numbers = list()
