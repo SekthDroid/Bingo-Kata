@@ -16,12 +16,8 @@ class BingoCardTest(TestCase):
         self.assertEqual(25, len(card.get_card_numbers()))
 
     def generate_columns(self):
-        columns = list()
-        for i in range(5):
-            row = list()
-            for x in range(5):
-                row.append(x)
-            columns.append(row)
+        columns = list([[1, 2, 3, 4, 5], [11, 22, 33, 44, 55], [21, 12, 23, 34, 45], [9, 8, 7, 6, 1], [1, 2, 32, 45, 51]])
+
         return columns
 
     def test_bingo_card_return_column_that_exists(self):
@@ -29,6 +25,7 @@ class BingoCardTest(TestCase):
 
         card = BingoCard(columns)
         self.assertEqual(columns[0], card.get_column(0))
+        self.assertEqual(columns[1], card.get_column(1))
 
 
 class BingoCardGeneratorTest(TestCase):
