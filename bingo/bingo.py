@@ -53,6 +53,9 @@ class Bingo(object):
         self.available_numbers.remove(random)
         return random
 
+    def check_card(self, card):
+        return True
+
 
 def generate_random_number(lower_bound, upper_bound):
     random = randrange(lower_bound, upper_bound)
