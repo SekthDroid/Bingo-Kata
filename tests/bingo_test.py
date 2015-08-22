@@ -62,7 +62,7 @@ class BingoTest(TestCase):
         card = self.bingo.generate_card(self.LOWER_BOUND, self.UPPER_BOUND)
 
         for i in range(0, 5):
-            if i is 2:
+            if i is 2: # We avoid the free space in this test
                 continue
             self.assertGreaterEqual(card[i][2], 31)
             self.assertLessEqual(card[i][2], 45)

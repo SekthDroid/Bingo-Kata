@@ -3,6 +3,21 @@ from random import randrange
 __author__ = 'SekthDroid'
 
 
+class BingoCard(object):
+    def __init__(self):
+        super().__init__()
+        self.generate_card()
+
+    def get_column(self, column):
+        pass
+
+    def check_number(self, number):
+        pass
+
+    def generate_card(self):
+        pass
+
+
 class Bingo(object):
     available_numbers = []
 
@@ -14,7 +29,7 @@ class Bingo(object):
         if len(self.available_numbers) is 0:
             return
 
-        random = self.available_numbers[self.__generate_random_number(0, len(self.available_numbers))]
+        random = self.available_numbers[generate_random_number(0, len(self.available_numbers))]
         self.available_numbers.remove(random)
         return random
 
@@ -22,7 +37,7 @@ class Bingo(object):
         numbers = list()
         increment = upper_bound = int(upper_bound / 5)
         while len(numbers) < 25:
-            candidate = self.__generate_random_number(lower_bound, upper_bound)
+            candidate = generate_random_number(lower_bound, upper_bound)
             if candidate not in numbers:
                 numbers.append(candidate)
             if len(numbers) % 5 is 0:
@@ -49,7 +64,7 @@ class Bingo(object):
 
         return self.fill_card_with(numbers)
 
-    @staticmethod
-    def __generate_random_number(lower_bound, upper_bound):
-        random = randrange(lower_bound, upper_bound)
-        return random
+
+def generate_random_number(lower_bound, upper_bound):
+    random = randrange(lower_bound, upper_bound)
+    return random
