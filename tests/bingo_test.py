@@ -73,6 +73,17 @@ class BingoCardGeneratorTest(TestCase):
             self.assertGreaterEqual(number, 61)
             self.assertLessEqual(number, 75)
 
+    def test_bingo_card_generator_generate_cards_with_25_unique_numbers(self):
+        numbers = set()
+
+        columns = bingo_card_generator(5, 5, 1, 75)
+        for row in columns:
+            for cell in row:
+                numbers.add(cell)
+
+        self.assertEqual(US_BINGO_CELLS, len(numbers))
+
+
 class BingoTest(TestCase):
     def setUp(self):
         super().setUp()
@@ -92,19 +103,4 @@ class BingoTest(TestCase):
         self.assertEqual(UPPER_BOUND, len(numbers))
 
 
-    def test_bingo_generate_bingo_cards_with_25_unique_numbers(self):
-        numbers = set()
 
-        card = self.bingo.generate_card(LOWER_BOUND, UPPER_BOUND)
-        for row in card:
-            for cell in row:
-                numbers.add(cell)
-
-        self.assertEqual(US_BINGO_CELLS, len(numbers))
-
-
-
-
-    def test_bingo_card_center_should_be_free(self):
-        card = self.bingo.generate_card(LOWER_BOUND, UPPER_BOUND)
-        self.assertEqual("", card[2][2])
