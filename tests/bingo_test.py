@@ -49,14 +49,14 @@ class BingoTest(TestCase):
 
         self.assertEqual(self.US_BINGO_CELLS, len(numbers))
 
-    def test_first_bingo_card_column_should_have_numbers_between_one_and_fifteen_inclusive(self):
+    def test_first_bingo_card_column_should_have_numbers_between_1_and_15_inclusive(self):
         card = self.bingo.generate_card(self.LOWER_BOUND, self.UPPER_BOUND)
 
         for i in range(0, 5):
             self.assertGreaterEqual(card[i][0], 1)
             self.assertLessEqual(card[i][0], 15)
 
-    def test_second_bingo_card_column_should_have_numbers_between_sixteen_and_thirty_inclusive(self):
+    def test_second_bingo_card_column_should_have_numbers_between_16_and_30_inclusive(self):
         card = self.bingo.generate_card(self.LOWER_BOUND, self.UPPER_BOUND)
 
         for i in range(0, 5):
