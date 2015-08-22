@@ -50,8 +50,11 @@ class BingoCardTest(TestCase):
 
 
 class BingoCardGeneratorTest(TestCase):
+    ROWS = 5
+    COLUMNS = 5
+
     def test_bingo_can_generate_columns_with_25_spaces(self):
-        columns = bingo_card_generator(5, 5, 1, 75)
+        columns = self.generate_columns(5, 5, 1, 75)
 
         total_items = 5 * 5
 
@@ -61,22 +64,26 @@ class BingoCardGeneratorTest(TestCase):
 
         self.assertEqual(total_items, items)
 
+    def generate_columns(self, rows=ROWS, columns=COLUMNS, lower_bound=LOWER_BOUND, upper_bound=UPPER_BOUND):
+        columns = bingo_card_generator(rows, columns, lower_bound, upper_bound)
+        return columns
+
     def test_first_bingo_card_column_should_have_numbers_between_1_and_15_inclusive(self):
-        columns = bingo_card_generator(5, 5, 1, 75)
+        columns = self.generate_columns()
 
         for number in columns[0]:
             self.assertGreaterEqual(number, 1)
             self.assertLessEqual(number, 15)
 
     def test_second_bingo_card_column_should_have_numbers_between_16_and_30_inclusive(self):
-        columns = bingo_card_generator(5, 5, 1, 75)
+        columns = self.generate_columns()
 
         for number in columns[1]:
             self.assertGreaterEqual(number, 16)
             self.assertLessEqual(number, 30)
 
     def test_third_bingo_card_column_should_have_numbers_between_31_and_45_inclusive_with_one_free_space(self):
-        columns = bingo_card_generator(5, 5, 1, 75)
+        columns = self.generate_columns()
 
         column_to_test = columns[2]
         for i in range(0, len(column_to_test)):
@@ -88,14 +95,14 @@ class BingoCardGeneratorTest(TestCase):
                 self.assertLessEqual(number, 45)
 
     def test_fourth_bingo_card_column_should_have_numbers_between_46_and_60_inclusive(self):
-        columns = bingo_card_generator(5, 5, 1, 75)
+        columns = self.generate_columns()
 
         for number in columns[3]:
             self.assertGreaterEqual(number, 46)
             self.assertLessEqual(number, 60)
 
     def test_fifth_bingo_card_column_should_have_numbers_between_61_and_75_inclusive(self):
-        columns = bingo_card_generator(5, 5, 1, 75)
+        columns = self.generate_columns()
 
         for number in columns[4]:
             self.assertGreaterEqual(number, 61)
