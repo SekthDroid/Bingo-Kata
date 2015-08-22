@@ -41,6 +41,7 @@ class Bingo(object):
             for j in range(5):
                 card[i][j] = splited[j][i]
 
+        card[2][2] = ""
         return card
 
     def generate_card(self, lower_bound, upper_bound):

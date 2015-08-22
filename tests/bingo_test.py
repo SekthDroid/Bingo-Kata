@@ -26,18 +26,13 @@ class BingoTest(TestCase):
 
         self.assertEqual(self.UPPER_BOUND, len(numbers))
 
-    def test_bingo_can_generate_bingo_cards_with_25_numbers_between_the_bingo_bounds(self):
+    def test_bingo_can_generate_bingo_cards_with_25_spaces(self):
         card = self.bingo.generate_card(1, self.UPPER_BOUND)
         items = 0
         for row in card:
             items += len(row)
 
         self.assertEqual(self.US_BINGO_CELLS, items)
-
-        for row in card:
-            for cell in row:
-                self.assertGreaterEqual(cell, self.LOWER_BOUND)
-                self.assertLessEqual(cell, self.UPPER_BOUND)
 
     def test_bingo_generate_bingo_cards_with_25_unique_numbers(self):
         numbers = set()
@@ -67,6 +62,8 @@ class BingoTest(TestCase):
         card = self.bingo.generate_card(self.LOWER_BOUND, self.UPPER_BOUND)
 
         for i in range(0, 5):
+            if i is 2:
+                continue
             self.assertGreaterEqual(card[i][2], 31)
             self.assertLessEqual(card[i][2], 45)
 
@@ -83,3 +80,7 @@ class BingoTest(TestCase):
         for i in range(0, 5):
             self.assertGreaterEqual(card[i][4], 61)
             self.assertLessEqual(card[i][4], 75)
+
+    def test_bingo_card_center_should_be_free(self):
+        card = self.bingo.generate_card(self.LOWER_BOUND, self.UPPER_BOUND)
+        self.assertEqual("", card[2][2])
